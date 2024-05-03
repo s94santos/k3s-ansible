@@ -36,6 +36,11 @@
   tags: kubevip
   when: kube_vip_lb_ip_range is defined
 
+- name: Deploy longhorn manifest
+  include_tasks: longhorn.yml
+  tags: longorn
+  when: longhorn_version is defined
+
 - name: Init cluster inside the transient k3s-init service
   command:
     cmd: "systemd-run -p RestartSec=2 \
